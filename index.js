@@ -1,17 +1,14 @@
 const http = require('http')
-const fs = require('fs')
-const { JSDOM } = require('jsdom')
-const El = require('./WebPages/Elements/AllElements.js')
+const GenPages = require('./WebPages/GenPages.js').GenPages
 const PORT = process.env.PORT || 5000
 
-function genPageLogin(){
-  return fs.readFileSync("./WebPages/login.html","utf-8")
+const pages = {
+  login: GenPages('Login')
 }
-
-var pages = {login:genPageLogin()}
 
 http.createServer((req,res)=>{
   res.statusCode = 200
   res.setHeader('Content-Type', 'html')
-  res.end(pages.login)
+  res.end(GenPages('Login'))//pages.login)
 }).listen(PORT)
+console.log('OK')
