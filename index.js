@@ -11,7 +11,7 @@ http
 			res.setHeader('Content-Type', 'html')
 			res.end(page)
 		} else {
-			res.writeHead(301, { Location: AppUrl})
+			res.writeHead(302, { Location: AppUrl})
 			res.end()
 		}
 	})
