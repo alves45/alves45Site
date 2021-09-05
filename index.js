@@ -10,6 +10,7 @@ http.createServer((req, res) => {
 			res.end(page);
 		} else {
 			res.writeHead(301, { Location: 'https://' + req.headers.Host });
+			res.end();
 		}
 		console.log(req.headers.host);
 	})
