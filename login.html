@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const login = document.querySelector("#login")
+            const password = document.querySelector("#password")
+            const submit = document.querySelector("#submit")
+            const url = './'
+
+            submit.addEventListener('click', async () => {
+                const loginHash = await hash(login.value);
+                const passwordHash = await hash(password.value)
+                request(url, { login: login.value, password: password.value }).then(console.log).catch(console.log)
+            })
+
+            async function hash(data) {
+                const encoder = new TextEncoder();
+                const _data = encoder.encode(data);
+                const hash = await crypto.subtle.digest('SHA-256', _data);
+                return hash;
+            }
+
+            function request(url, data) {
+                return new Promise((resolve, reject) => {
+                    fetch(url, {
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json'
+                        },
+                        method: "POST",
+                        body: JSON.stringify(data)
+                    })
+                        .then(resp => resp.blob())
+                        .then(blob => blob.text())
+                        .then(text => resolve(text))
+                        .catch(err => reject(err))
+                })
+            }
+        })
+    </script>
+</head>
+
+<body>
+    <div>
+        <label for="login">Login</label>
+        <input type=text id="login"></Input>
+        <label for="password">Senha</label>
+        <input type=text id="password"></Input>
+        <button style="display:block; width: 100px;height: 30px;" id="submit">Login</button>
+    </div>
+</body>
+
+</html>

@@ -2,6 +2,7 @@
   "name": "alves45",
   "version": "0.3.0",
   "description": "yes",
+  "type": "module",
   "engines": {
     "node": "14.x"
   },
@@ -14,6 +15,7 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
+    "express": "^4.17.1"
   },
   "repository": {
     "type": "git",
@@ -23,5 +25,6 @@
     "node",
     "heroku"
   ],
-  "license": "MIT"
+  "license": "MIT",
+  "author": ""
 }
