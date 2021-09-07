@@ -5,8 +5,8 @@ const PORT = process.env.PORT || 3000
 const pageLogin = readFileSync("login.html", "utf8")
 
 createServer((req, res) => {
-	res.statusCode = 200
 	if (req.headers["x-forwarded-proto"] == "https") {
+		res.statusCode = 200
 		let response = ''
 		req.addListener('data', (chunk) => {
 			response = chunk
