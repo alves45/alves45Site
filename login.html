@@ -16,7 +16,7 @@
                 const loginHash = await hash(login.value);
                 const passwordHash = await hash(password.value)
                 const mainHash = await hash(loginHash + passwordHash);
-                request(mainHash)
+                Connect(mainHash)
                     .then(console.log)
                     .catch(console.log)
             })
@@ -38,7 +38,7 @@
                 })
             }
 
-            function connect(data) {
+            function Connect(data) {
                 return new Promise((resolve, reject) => {
                     fetch({
                         headers: {
