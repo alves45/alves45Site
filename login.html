@@ -16,7 +16,6 @@
                 const loginHash = await hash(login.value);
                 const passwordHash = await hash(password.value)
                 const mainHash = await hash(loginHash + passwordHash);
-                console.log(loginHash, mainHash);
                 Connect({ mainHash })
                     .then(console.log)
                     .catch(console.log)
