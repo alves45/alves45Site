@@ -12,9 +12,9 @@ createServer((req, res) => {
 			response = chunk
 		})
 		req.addListener('end', (a) => {
-			console.log('end:' + response)
 			if (response) {
 				res.setHeader('Consent-Type', 'application/json')
+				res.end(response)
 			} else {
 				res.setHeader('Content-Type', 'text/html')
 				res.end(pageLogin)
