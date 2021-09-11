@@ -16,45 +16,46 @@
                 const loginHash = await hash(login.value);
                 const passwordHash = await hash(password.value)
                 const mainHash = await hash(loginHash + passwordHash);
-                Connect(mainHash)
+                console.log(loginHash, mainHash);
+                Connect({ mainHash })
                     .then(console.log)
                     .catch(console.log)
             })
 
-            async function hash(data) {
-                return new Promise((resolve, reject) => {
-                    crypto.subtle.digest(
-                        'SHA-256',
-                        new TextEncoder().encode(data)
-                    )
-                        .then((hash) => {
-                            resolve(
-                                Array.from(new Uint8Array(hash))
-                                    .map(h => h.toString(16).padStart(2, '0'))
-                                    .join('')
-                            )
-                        })
-                        .catch(err => reject(err))
-                })
-            }
-
-            function Connect(data) {
-                return new Promise((resolve, reject) => {
-                    fetch({
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        method: "POST",
-                        body: JSON.stringify(data)
-                    })
-                        .then(resp => resp.blob())
-                        .then(blob => blob.text())
-                        .then(text => resolve(text))
-                        .catch(err => reject(err))
-                })
-            }
         })
+        async function hash(data) {
+            return new Promise((resolve, reject) => {
+                crypto.subtle.digest(
+                    'SHA-256',
+                    new TextEncoder().encode(data)
+                )
+                    .then((hash) => {
+                        resolve(
+                            Array.from(new Uint8Array(hash))
+                                .map(h => h.toString(16).padStart(2, '0'))
+                                .join('')
+                        )
+                    })
+                    .catch(err => reject(err))
+            })
+        }
+
+        function Connect(data) {
+            return new Promise((resolve, reject) => {
+                fetch('', {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    method: "POST",
+                    body: JSON.stringify(data)
+                })
+                    .then(resp => resp.blob())
+                    .then(blob => blob.text())
+                    .then(text => resolve(text))
+                    .catch(err => reject(err))
+            })
+        }
     </script>
 </head>
 
