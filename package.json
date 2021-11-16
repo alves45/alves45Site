@@ -4,7 +4,7 @@
   "description": "yes",
   "type": "module",
   "engines": {
-    "node": "14.x"
+    "node": "15.x"
   },
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,8 @@
   "license": "MIT",
   "author": "",
   "dependencies": {
+    "@emotion/cache": "^11.5.0",
+    "@emotion/css": "^11.5.0",
     "jsdom": "^17.0.0"
   },
   "devDependencies": {
