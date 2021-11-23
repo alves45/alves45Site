@@ -60,14 +60,6 @@ export default class {
     document.body.appendChild(h1);
     styleDOM.innerHTML = this.style.buildStyles();
     document.head.appendChild(styleDOM);
-    let scripts = document.createElement("script");
-    scripts.innerHTML = `
-    window.addEventListener('resize', () => {
-      //document.body.innerHTML+= " "+ window.innerHeight + " " + window.innerWidth + " " + window.devicePixelRatio;
-      document.documentElement.style.setProperty('--vh', \`\${window.innerHeight/100}px\`);
-      console.log(window.innerHeight, window.innerWidth, window.devicePixelRatio);
-    });`;
-    document.head.appendChild(scripts);
     this.HTML = document.documentElement.innerHTML;
     console.log("page loaded");
   };
