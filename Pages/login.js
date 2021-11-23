@@ -1,6 +1,7 @@
 import { css, cache, keyframes } from "@emotion/css";
 import classStyle from "./tools/css.js";
 import _inputTxt from "./components/inputTxt.js";
+import zlib from "zlib";
 export default class {
   constructor(window) {
     /**@type {Window} */
@@ -60,7 +61,10 @@ export default class {
     document.body.appendChild(h1);
     styleDOM.innerHTML = this.style.buildStyles();
     document.head.appendChild(styleDOM);
-    this.HTML = document.documentElement.innerHTML;
+    this.HTML = zlib.brotliCompressSync(
+      new Buffer.from(document.documentElement.innerHTML)
+    );
+    // this.HTML = document.documentElement.innerHTML;
     console.log("page loaded");
   };
 }

@@ -24,7 +24,8 @@
   "dependencies": {
     "@emotion/cache": "^11.5.0",
     "@emotion/css": "^11.5.0",
-    "jsdom": "^17.0.0"
+    "jsdom": "^17.0.0",
+    "zlib": "^1.0.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

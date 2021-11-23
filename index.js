@@ -42,6 +42,7 @@ http
           res.setHeader("Consent-Type", "application/json");
           res.end(response);
         } else {
+          res.setHeader("content-encoding", "br");
           res.setHeader("Content-Type", "text/html");
           res.end(app.login.HTML);
         }
