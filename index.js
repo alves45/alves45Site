@@ -1,16 +1,10 @@
 import http from "http";
 import fs from "fs";
-import { JSDOM } from "jsdom";
 
 const AppUrl = "https://alves45.herokuapp.com/";
 const PORT = process.env.PORT || 3000;
 
-global.app = {
-  whitePage: fs.readFileSync("./whiteWindow.html", "utf8"),
-  newWindow: () => {
-    return new JSDOM(app.whitePage).window;
-  },
-};
+global.app = {};
 
 const pathPages = "./Pages/";
 fs.readdirSync(pathPages)
@@ -19,9 +13,9 @@ fs.readdirSync(pathPages)
     let nameFunc = funcPage.replace(".js", "");
     import(pathPages + funcPage)
       .then((moduleImported) => {
-        let newWindow = app.newWindow();
-        app[nameFunc] = new moduleImported.default(newWindow);
+        app[nameFunc] = new moduleImported.default();
         app[nameFunc].render();
+        console.log(nameFunc + " loaded");
       })
       .catch(console.log);
   });
@@ -42,7 +36,12 @@ http
           res.setHeader("Consent-Type", "application/json");
           res.end(response);
         } else {
-          res.setHeader("content-encoding", "br");
+          console.log(
+            new Date().toISOString() +
+              " " +
+              (req.headers["x-forwarded-for"] || req.socket.remoteAddress)
+          );
+          res.setHeader("content-encoding", app.login.compress);
           res.setHeader("Content-Type", "text/html");
           res.end(app.login.HTML);
         }
