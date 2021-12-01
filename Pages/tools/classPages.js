@@ -1,4 +1,5 @@
 import fs from "fs";
+import zlib from "zlib";
 import { JSDOM } from "jsdom";
 import { css, cache } from "@emotion/css";
 import { consts, _style } from "./css.js";
