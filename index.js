@@ -4,7 +4,9 @@ import fs from "fs";
 const AppUrl = "https://alves45.herokuapp.com/";
 const PORT = process.env.PORT || 3000;
 
-global.app = {};
+global.app = {
+  isProduction: process.env.NODE_ENV !== "production",
+};
 
 const pathPages = "./Pages/";
 fs.readdirSync(pathPages)
@@ -36,12 +38,13 @@ http
           res.setHeader("Consent-Type", "application/json");
           res.end(response);
         } else {
-          var date = new Date()
+          var date = new Date();
+          date.getTimezoneOffset(180);
           console.log(
             date.toLocaleDateString("pt-BR") +
               " " +
-              date.toLocaleTimeString("pt-BR")+
-              " "+
+              date.toLocaleTimeString("pt-BR") +
+              " " +
               (req.headers["x-forwarded-for"] || req.socket.remoteAddress)
           );
           res.setHeader("content-encoding", app.login.compress);
