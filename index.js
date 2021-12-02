@@ -36,9 +36,12 @@ http
           res.setHeader("Consent-Type", "application/json");
           res.end(response);
         } else {
+          var date = new Date()
           console.log(
-            new Date().toISOString() +
+            date.toLocaleDateString("pt-BR") +
               " " +
+              date.toLocaleTimeString("pt-BR")+
+              " "+
               (req.headers["x-forwarded-for"] || req.socket.remoteAddress)
           );
           res.setHeader("content-encoding", app.login.compress);
