@@ -40,7 +40,7 @@ http
         } else {
           console.log(
             new Date(
-              new Date().setUTCHours(app.isProduction ? -3 : 3)
+              new Date().setUTCHours(app.isProduction ? 0 : 3)
             ).toLocaleString("pt-BR") +
               " " +
               (req.headers["x-forwarded-for"] || req.socket.remoteAddress)
