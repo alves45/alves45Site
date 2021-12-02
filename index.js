@@ -5,7 +5,7 @@ const AppUrl = "https://alves45.herokuapp.com/";
 const PORT = process.env.PORT || 3000;
 
 global.app = {
-  isProduction: process.env.NODE_ENV !== "production",
+  isProduction: process.env.NODE_ENV === "production",
 };
 
 const pathPages = "./Pages/";
@@ -38,12 +38,10 @@ http
           res.setHeader("Consent-Type", "application/json");
           res.end(response);
         } else {
-          var date = new Date();
-          date.getTimezoneOffset(180);
           console.log(
-            date.toLocaleDateString("pt-BR") +
-              " " +
-              date.toLocaleTimeString("pt-BR") +
+            new Date(
+              new Date().setUTCHours(app.isProduction ? -3 : 3)
+            ).toLocaleString("pt-BR") +
               " " +
               (req.headers["x-forwarded-for"] || req.socket.remoteAddress)
           );
