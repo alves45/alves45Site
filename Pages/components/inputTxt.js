@@ -11,6 +11,7 @@ export default class {
     const fontSize = consts.s4;
     const bottomBorder = consts.s0_5;
     const styleInputTxt = css`
+      padding-top: ${consts.s2};
       display: flex;
       flex-direction: column;
       label {
@@ -38,11 +39,11 @@ export default class {
         border-bottom: 0.05rem solid black;
       }
       :focus-within label {
-        transform: scale(0.8) translate(-12.5%, 15%);
+        transform: translate(-10.6%, 15%) scale(0.8);
         color: ${consts.blue700};
       }
       input:not(:placeholder-shown) ~ label {
-        transform: scale(0.8) translate(-12.5%, 15%);
+        transform: translate(-10.6%, 15%) scale(0.8);
       }
       input:required ~ label::after {
         content: "*";
@@ -51,7 +52,7 @@ export default class {
       input:valid ~ label::after {
         content: "";
       }
-      input:focus ~ div {
+      :focus-within div {
         transform: scaleX(1) translateY(-${bottomBorder});
       }
     `;

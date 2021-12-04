@@ -9,6 +9,13 @@ export default class extends page {
   render = () => {
     let document = this.window.document;
     let inputTxt = new _inputTxt(this);
+    this.style.addG(css`
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    `);
     const card = document.createElement("div");
     document.body.appendChild(card);
     const user = inputTxt.render({
@@ -23,16 +30,9 @@ export default class extends page {
     });
     card.appendChild(user);
     card.appendChild(password);
-    this.style.addG(css`
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    `);
     const styleCard = css`
       background-color: ${consts.gray200};
-      padding: ${consts.s12};
+      padding: ${consts.s5};
       border-radius: ${consts.s2};
     `;
     card.className = styleCard;
