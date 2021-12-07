@@ -11,23 +11,20 @@ export default class {
     const fontSize = consts.s4;
     const bottomBorder = consts.s0_5;
     const styleInputTxt = css`
-      padding-top: ${consts.s2};
+      margin-top: ${consts.s2};
       display: flex;
       flex-direction: column;
       label {
         font-size: ${fontSize};
         order: 1;
-        display: block;
         transform: translateY(${parseFloat(heightSize) * 0.8 + "rem"});
-        width: auto;
         pointer-events: none;
       }
-      div {
+      span {
         order: 3;
         transform: scaleX(0) translateY(-${bottomBorder});
         height: 0;
-        border: 0;
-        border-bottom: ${bottomBorder} solid ${consts.blue700};
+        border-top: ${bottomBorder} solid ${consts.blue700};
       }
       input {
         height: ${heightSize};
@@ -39,11 +36,11 @@ export default class {
         border-bottom: 0.05rem solid black;
       }
       :focus-within label {
-        transform: translate(-10.6%, 15%) scale(0.8);
+        transform: translate(-10%, 15%) scale(0.8);
         color: ${consts.blue700};
       }
       input:not(:placeholder-shown) ~ label {
-        transform: translate(-10.6%, 15%) scale(0.8);
+        transform: translate(-10%, 15%) scale(0.8);
       }
       input:required ~ label::after {
         content: "*";
@@ -52,7 +49,7 @@ export default class {
       input:valid ~ label::after {
         content: "";
       }
-      :focus-within div {
+      :focus-within span {
         transform: scaleX(1) translateY(-${bottomBorder});
       }
     `;
@@ -69,7 +66,7 @@ export default class {
     );
     const inputTxt = this.document.createElement("div");
     inputTxt.innerHTML = `<div class="styleInputTxt">
-    <div></div>
+    <span></span>
     <input placeholder=" "type="${props.type}"${
       props.required ? "required" : ""
     }/>
