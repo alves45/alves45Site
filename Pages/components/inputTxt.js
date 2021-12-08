@@ -7,9 +7,10 @@ export default class {
     that.style.add(this.styleInputTxt);
   }
   a = (() => {
-    const heightSize = consts.s8;
+    const heightSize = consts.s7;
     const fontSize = consts.s4;
     const bottomBorder = consts.s0_5;
+    const smallBottomBorder = parseFloat(bottomBorder) / 2.5 + "rem";
     const styleInputTxt = css`
       margin-top: ${consts.s2};
       display: flex;
@@ -22,7 +23,7 @@ export default class {
       }
       span {
         order: 3;
-        transform: scaleX(0) translateY(-${bottomBorder});
+        transform: scaleX(0) translateY(-${smallBottomBorder});
         height: 0;
         border-top: ${bottomBorder} solid ${consts.blue700};
       }
@@ -33,7 +34,12 @@ export default class {
         background-color: transparent;
         outline: none;
         border: 0;
-        border-bottom: 0.05rem solid black;
+        border-bottom: ${smallBottomBorder} solid black;
+      }
+      input:invalid:not(:placeholder-shown, :focus-within) ~ label,
+      input:invalid:not(:placeholder-shown, :focus-within) {
+        color: ${consts.red500};
+        border-color: ${consts.red500};
       }
       :focus-within label {
         transform: translate(-10%, 15%) scale(0.8);
@@ -50,7 +56,7 @@ export default class {
         content: "";
       }
       :focus-within span {
-        transform: scaleX(1) translateY(-${bottomBorder});
+        transform: scaleX(1) translateY(-${smallBottomBorder});
       }
     `;
     this.styleInputTxt = styleInputTxt;
@@ -61,6 +67,8 @@ export default class {
         label: "Type something",
         required: false,
         type: "text",
+        pattern: "",
+        title: "",
       },
       props
     );
@@ -69,7 +77,9 @@ export default class {
     <span></span>
     <input placeholder=" "type="${props.type}"${
       props.required ? "required" : ""
-    }/>
+    }
+    ${props.pattern ? 'pattern="' + props.pattern + '"' : ""}
+    ${props.title ? 'title="' + props.title + '"' : ""}/>
     <label>${props.label}
     </label>
   </div>`;

@@ -14,7 +14,36 @@ export default class page {
   render() {
     let document = this.window.document;
     if (process.env.NODE_ENV !== "production") {
-      document.head.innerHTML += `<meta http-equiv="refresh" content="5" />`;
+      let devReloadScript = document.createElement("script");
+      document.head.appendChild(devReloadScript);
+      devReloadScript.innerHTML =
+        "(" +
+        (() => {
+          console.log("tá dando boa");
+          let toggle = false;
+          let controller = new AbortController();
+          let signal = controller.signal;
+          setInterval(() => {
+            var timeout = setTimeout(() => {
+              controller.abort();
+            }, 200);
+            fetch("", { signal })
+              .then(() => {
+                clearInterval(timeout);
+                if (toggle) {
+                  location.reload();
+                } else {
+                }
+              })
+              .catch(() => {
+                clearInterval(timeout);
+                controller = new AbortController();
+                signal = controller.signal;
+                toggle = true;
+              });
+          }, 500);
+        }).toString() +
+        ")()";
     }
     const styleDOM = document.createElement("style");
     this.style.addG(css`
@@ -38,7 +67,7 @@ export default class page {
         font-size: 1rem;
       }
       :root {
-        font-size: 6vh;
+        font-size: 6vw;
       }
       @media (max-aspect-ratio: 1/1) {
         :root {

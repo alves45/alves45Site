@@ -22,6 +22,8 @@ export default class extends page {
       label: "Usuário",
       required: true,
       type: "text",
+      pattern: "[0-9]*",
+      title: "Só para testar mesmo, só pode ter números",
     });
     const password = inputTxt.render({
       label: "Senha",
