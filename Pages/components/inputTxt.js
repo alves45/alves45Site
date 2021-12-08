@@ -10,9 +10,10 @@ export default class {
     const heightSize = consts.s7;
     const fontSize = consts.s4;
     const bottomBorder = consts.s0_5;
-    const smallBottomBorder = parseFloat(bottomBorder) / 2.5 + "rem";
+    const smallBottomBorder = parseFloat(bottomBorder) / 2 + "rem";
     const styleInputTxt = css`
       margin-top: ${consts.s2};
+      width: 100%;
       display: flex;
       flex-direction: column;
       label {
@@ -29,6 +30,7 @@ export default class {
       }
       input {
         height: ${heightSize};
+        width: 100%;
         font-size: ${fontSize};
         order: 2;
         background-color: transparent;
@@ -38,8 +40,8 @@ export default class {
       }
       input:invalid:not(:placeholder-shown, :focus-within) ~ label,
       input:invalid:not(:placeholder-shown, :focus-within) {
-        color: ${consts.red500};
-        border-color: ${consts.red500};
+        color: ${consts.red700};
+        border-color: ${consts.red700};
       }
       :focus-within label {
         transform: translate(-10%, 15%) scale(0.8);

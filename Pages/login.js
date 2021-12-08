@@ -30,15 +30,28 @@ export default class extends page {
       required: true,
       type: "password",
     });
-    card.appendChild(user);
-    card.appendChild(password);
+    const headerCard = document.createElement("h1");
+    headerCard.textContent = "LOGIN";
+    const headerCardStyle = css`
+      margin-bottom: ${consts.s4};
+      font-size: ${consts.s6};
+      color: ${consts.blue800};
+    `;
+    headerCard.className = headerCardStyle;
     const styleCard = css`
-      background-color: ${consts.gray200};
+      background-color: ${consts.gray300};
       padding: ${consts.s5};
+      margin-left: ${consts.s1};
+      margin-right: ${consts.s1};
       border-radius: ${consts.s2};
+      width: 90%;
+      @media (pointer: fine) {
+        width: auto;
+      }
     `;
     card.className = styleCard;
-    this.style.add(styleCard);
+    this.style.add(styleCard, headerCardStyle);
+    card.append(headerCard, user, password);
     super.render();
   };
 }

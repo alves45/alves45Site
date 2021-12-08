@@ -51,9 +51,8 @@ export default class page {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-
         font-family: Arial, Helvetica, sans-serif;
-        transition: ease-in-out 200ms;
+        transition: all ease-in-out 200ms;
       }
       @font-face {
         font-family: "icons";
