@@ -4,7 +4,7 @@
   "description": "yes",
   "type": "module",
   "engines": {
-    "node": "15.x"
+    "node": "17.x"
   },
   "main": "index.js",
   "scripts": {
@@ -20,14 +20,15 @@
     "heroku"
   ],
   "license": "MIT",
-  "author": "",
+  "author": "Lucas Alves de Lima",
   "dependencies": {
+    "@babel/core": "^7.16.7",
     "@emotion/cache": "^11.5.0",
     "@emotion/css": "^11.5.0",
     "jsdom": "^17.0.0",
     "zlib": "^1.0.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.12"
+    "nodemon": "^2.0.15"
   }
 }
