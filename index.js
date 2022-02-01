@@ -51,7 +51,7 @@ function server() {
             res.setHeader("Content-Type", "text/html");
             res.setHeader(
               "cache-control",
-              "public, max-age=0, must-revalidate"
+              "public, max-age=31536000, immutable"
             );
             res.end(app.login.HTML);
           }
