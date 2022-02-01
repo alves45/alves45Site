@@ -53,6 +53,7 @@ function server() {
               "cache-control",
               "public, max-age=31536000, immutable"
             );
+            res.setHeader("age", "2");
             res.end(app.login.HTML);
           }
         });
