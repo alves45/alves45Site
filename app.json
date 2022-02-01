@@ -1,16 +1,8 @@
 {
-
 	"name": "alves45",
-
 	"description": "site made with nodejs and blood",
-
 	"repository": "https://github.com/heroku/node-js-getting-started",
-
 	"logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/main/public/node.svg",
-
 	"keywords": ["node", "heroku"],
-
 	"image": "heroku/nodejs"
-
 }
-

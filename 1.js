@@ -5,22 +5,25 @@
 //   })
 // );
 
-// import { promises as fs } from "fs";
-// import path from "path";
-// async function crLfToLf(dirPath) {
-//   var list = await fs.readdir(dirPath);
-//   list.map(async (pathElement) => {
-//     pathElement = path.resolve(dirPath, pathElement);
-//     var that = await fs.lstat(pathElement);
-//     if (that.isFile()) {
-//       console.log(pathElement);
-//       fs.writeFile(
-//         pathElement,
-//         (await fs.readFile(pathElement, "utf8")).replace(/(\n|\r|\r\n)/g, "\n")
-//       );
-//     } else {
-//       crLfToLf(pathElement);
-//     }
-//   });
-// }
-// crLfToLf("./");
+import { promises as fs } from "fs";
+import path from "path";
+async function crLfToLf(dirPath) {
+  var list = await fs.readdir(dirPath);
+  list.map(async (pathElement) => {
+    pathElement = path.resolve(dirPath, pathElement);
+    var that = await fs.lstat(pathElement);
+    if (that.isFile()) {
+      console.log(pathElement);
+      fs.writeFile(
+        pathElement,
+        (await fs.readFile(pathElement, "utf8")).replace(
+          /(\r\n)|\n|\r|(\n\n)/g,
+          "\n"
+        )
+      );
+    } else {
+      crLfToLf(pathElement);
+    }
+  });
+}
+crLfToLf("./");
