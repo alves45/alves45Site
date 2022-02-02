@@ -49,10 +49,7 @@ function server() {
             );
             res.setHeader("content-encoding", app.login.compress);
             res.setHeader("Content-Type", "text/html");
-            res.setHeader(
-              "cache-control",
-              "public, max-age=31536000, immutable"
-            );
+            res.setHeader("cache-control", "public, max-age=31536000");
             res.setHeader("age", "2");
             res.end(app.login.HTML);
           }
