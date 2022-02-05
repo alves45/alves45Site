@@ -49,7 +49,7 @@ function server() {
             );
             res.setHeader("content-encoding", app.login.compress);
             res.setHeader("Content-Type", "text/html");
-            res.statusCode = 304;
+            //res.statusCode = 304;
             res.end(app.login.HTML);
           }
         });
