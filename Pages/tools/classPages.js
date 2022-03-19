@@ -14,12 +14,12 @@ export default class page {
   render() {
     let document = this.window.document;
     if (process.env.NODE_ENV !== "production") {
+      // if (false) {
       let devReloadScript = document.createElement("script");
       document.head.appendChild(devReloadScript);
       devReloadScript.innerHTML =
         "(" +
         (() => {
-          console.log("tá dando boa");
           let toggle = false;
           let controller = new AbortController();
           let signal = controller.signal;
@@ -27,7 +27,7 @@ export default class page {
             var timeout = setTimeout(() => {
               controller.abort();
             }, 200);
-            fetch("", { signal })
+            fetch("/waitRes", { signal })
               .then(() => {
                 clearInterval(timeout);
                 if (toggle) {
@@ -46,42 +46,43 @@ export default class page {
         ")()";
     }
     const styleDOM = document.createElement("style");
-    this.style.addG(css`
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        transition: all ease-in-out 200ms;
-      }
-      @font-face {
-        font-family: "icons";
-        font-style: normal;
-        font-weight: 400;
-        src: url(https://fonts.gstatic.com/s/materialicons/v117/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2)
-          format("woff2");
-      }
-      .icons {
-        font-family: "icons";
-        font-size: 1rem;
-      }
-      :root {
-        font-size: 6vw;
-      }
-      @media (max-aspect-ratio: 1/1) {
-        :root {
-          font-size: 6vw;
-        }
-      }
-      @media (pointer: fine) {
-        :root {
-          font-size: min(3vh, 3vw);
-        }
-      }
-      body {
-        background-color: ${consts.gray900};
-      }
-    `);
+    this.style.addG(
+      css({
+        "*": {
+          boxSizing: "border-box",
+          margin: 0,
+          padding: 0,
+          fontFamily: "Arial, Helvetica, sans-serif",
+          transition: "all ease-in-out 200ms",
+        },
+        "@font-face": {
+          fontFamily: '"icons"',
+          fontStyle: "normal",
+          fontWeight: 400,
+          src: 'url(https://fonts.gstatic.com/s/materialicons/v117/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format("woff2")',
+        },
+        ".icons": {
+          fontFamily: '"icons"',
+          fontSize: "1rem",
+        },
+        ":root": {
+          fontSize: "6vw",
+        },
+        "@media (max-aspect-ratio: 1/1)": {
+          ":root": {
+            fontSize: "6vw",
+          },
+        },
+        "@media (pointer: fine)": {
+          ":root": {
+            fontSize: "min(3vh, 3vw)",
+          },
+        },
+        body: {
+          backgroundColor: consts.gray900,
+        },
+      })
+    );
     styleDOM.innerHTML = this.style.buildStyles();
     document.head.appendChild(styleDOM);
     if (process.env.NODE_ENV !== "production") {

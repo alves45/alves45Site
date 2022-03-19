@@ -1,17 +1,18 @@
-import { css, cache } from "@emotion/css";
-import { _style, consts } from "../tools/css.js";
-export default class {
+import { css } from "@emotion/css";
+import { consts } from "../tools/css.js";
+import { func2str } from "../tools/js2str.js";
+export default class inputTxt {
   constructor(that) {
     /**@type {Window} */
     this.document = that.window.document;
-    that.style.add(this.styleInputTxt);
+    that.style.add(this.style);
   }
-  a = (() => {
+  style = (() => {
     const heightSize = consts.s7;
     const fontSize = consts.s4;
     const bottomBorder = consts.s0_5;
     const smallBottomBorder = parseFloat(bottomBorder) / 2 + "rem";
-    const styleInputTxt = css`
+    return css`
       margin-top: ${consts.s2};
       width: 100%;
       display: flex;
@@ -61,40 +62,36 @@ export default class {
         transform: scaleX(1) translateY(-${smallBottomBorder});
       }
     `;
-    this.styleInputTxt = styleInputTxt;
   })();
-  _render(props) {
-    props = Object.assign(
-      {
-        label: "Type something",
-        required: false,
-        type: "text",
-        pattern: "",
-        title: "",
-      },
-      props
-    );
-    const inputTxt = this.document.createElement("div");
-    inputTxt.innerHTML = `<div class="styleInputTxt">
-    <span></span>
-    <input placeholder=" "type="${props.type}"${
-      props.required ? "required" : ""
-    }
-    ${props.pattern ? 'pattern="' + props.pattern + '"' : ""}
-    ${props.title ? 'title="' + props.title + '"' : ""}/>
-    <label>${props.label}
-    </label>
-  </div>`;
-    return inputTxt;
-  }
   render = (() => {
-    let functionStr = this._render
-      .toString()
-      .replace("styleInputTxt", this.styleInputTxt)
-      .replace(/(\n|\r|\r\n)/g, "");
-    let args = functionStr.match(/(?<=\()[^\)]*(?=\))/g)[0].split(",");
-    let body = functionStr.match(/(?<=\{).*(?=\})/g)[0];
-    const thisFunction = Function(...args, body);
+    let { args, body } = func2str((props) => {
+      props = Object.assign(
+        {
+          label: "Type something",
+          required: false,
+          type: "text",
+          pattern: "",
+          title: "",
+        },
+        props
+      );
+      const inputTxt = this.document.createElement("div");
+      inputTxt.innerHTML = `<div class="replaceThisTextWithTheClassCss">
+      <span></span>
+      <input placeholder=" "type="${props.type}"${
+        props.required ? "required" : ""
+      }
+      ${props.pattern ? 'pattern="' + props.pattern + '"' : ""}
+      ${props.title ? 'title="' + props.title + '"' : ""}/>
+      <label>${props.label}
+      </label>
+    </div>`;
+      return inputTxt;
+    });
+    const thisFunction = Function(
+      ...args,
+      body.replace("replaceThisTextWithTheClassCss", this.style)
+    );
     return thisFunction;
   })();
 }
