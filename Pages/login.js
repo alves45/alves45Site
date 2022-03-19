@@ -2,13 +2,11 @@ import { css, keyframes } from "@emotion/css";
 import { consts } from "./tools/css.js";
 import _inputTxt from "./components/inputTxt.js";
 import page from "./tools/classPages.js";
+
 export default class extends page {
-  constructor() {
-    super();
-  }
   render = () => {
     let document = this.window.document;
-    let inputTxt = new _inputTxt(this);
+    var inputTxt = new _inputTxt(this);
     this.style.addG(css`
       body {
         display: flex;
@@ -32,23 +30,23 @@ export default class extends page {
     });
     const headerCard = document.createElement("h1");
     headerCard.textContent = "LOGIN";
-    const headerCardStyle = css`
-      margin-bottom: ${consts.s4};
-      font-size: ${consts.s6};
-      color: ${consts.c3};
-    `;
+    const headerCardStyle = css({
+      marginBottom: consts.s4,
+      fontSize: consts.s6,
+      color: consts.c3,
+    });
     headerCard.className = headerCardStyle;
-    const styleCard = css`
-      background-color: ${consts.c5};
-      padding: ${consts.s5};
-      margin-left: ${consts.s1};
-      margin-right: ${consts.s1};
-      border-radius: ${consts.s2};
-      width: 90%;
-      @media (pointer: fine) {
-        width: auto;
-      }
-    `;
+    const styleCard = css({
+      backgroundColor: consts.c5,
+      padding: consts.s5,
+      marginLeft: consts.s1,
+      marginRight: consts.s1,
+      borderRadius: consts.s2,
+      width: "90%",
+      "@media (pointer: fine)": {
+        width: "auto",
+      },
+    });
     card.className = styleCard;
     this.style.add(styleCard, headerCardStyle);
     card.append(headerCard, user, password);

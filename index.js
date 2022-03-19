@@ -23,6 +23,7 @@ const pathPages = "./Pages/";
         .catch(console.log);
     });
 })().then(server);
+
 function server() {
   http
     .createServer((req, res) => {
@@ -40,13 +41,14 @@ function server() {
             res.setHeader("Consent-Type", "application/json");
             res.end(response);
           } else {
-            console.log(
-              new Date(
-                new Date().setUTCHours(app.isProduction ? 0 : 3)
-              ).toLocaleString("pt-BR") +
-                " " +
-                (req.headers["x-forwarded-for"] || req.socket.remoteAddress)
-            );
+            if (process.env.NODE_ENV === "production")
+              console.log(
+                new Date(
+                  new Date().setUTCHours(app.isProduction ? 0 : 3)
+                ).toLocaleString("pt-BR") +
+                  " " +
+                  (req.headers["x-forwarded-for"] || req.socket.remoteAddress)
+              );
             res.setHeader("content-encoding", app.login.compress);
             res.setHeader("Content-Type", "text/html");
             //res.statusCode = 304;
