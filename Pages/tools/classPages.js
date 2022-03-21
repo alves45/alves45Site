@@ -4,7 +4,7 @@ import { JSDOM } from "jsdom";
 import { css, cache } from "@emotion/css";
 import { consts, _style } from "./css.js";
 const whitePage = fs.readFileSync("./whiteWindow.html", "utf8");
-export default class page {
+export default class {
   constructor() {
     /**@type {Window} */
     this.window = new JSDOM(whitePage).window;

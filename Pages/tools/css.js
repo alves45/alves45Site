@@ -4,6 +4,7 @@ export class _style {
   constructor() {
     this.global = [];
     this.classCss = [];
+    this.addG(this.colorsCss);
   }
   add = (...args) => {
     this.classCss = this.classCss.concat(args);
@@ -28,6 +29,66 @@ export class _style {
       .concat(this.classCss.map(getStyle))
       .join("");
   }
+  colorsCss = css`
+    :root {
+      --color-primary: #005ac5;
+      --color-on-primary: #ffffff;
+      --color-primary-container: #d6e2ff;
+      --color-on-primary-container: #001a43;
+      --color-secondary: #575e71;
+      --color-on-secondary: #ffffff;
+      --color-secondary-container: #dae2f9;
+      --color-on-secondary-container: #141b2c;
+      --color-tertiary: #715574;
+      --color-on-tertiary: #ffffff;
+      --color-tertiary-container: #fbd7fb;
+      --color-on-tertiary-container: #29132d;
+      --color-error: #ba1b1b;
+      --color-error-container: #ffdad4;
+      --color-on-error: #ffffff;
+      --color-on-error-container: #410001;
+      --color-background: #fdfbff;
+      --color-on-background: #1b1b1e;
+      --color-surface: #fdfbff;
+      --color-on-surface: #1b1b1e;
+      --color-surface-variant: #e1e2ec;
+      --color-on-surface-variant: #44474f;
+      --color-outline: #74777f;
+      --color-inverse-on-surface: #f2f0f4;
+      --color-inverse-surface: #2f3033;
+      --color-inverse-primary: #acc7ff;
+      --color-shadow: #000000;
+    }
+    .darkMode {
+      --color-primary: #acc7ff;
+      --color-on-primary: #002e6c;
+      --color-primary-container: #004397;
+      --color-on-primary-container: #d6e2ff;
+      --color-secondary: #bfc6dc;
+      --color-on-secondary: #283041;
+      --color-secondary-container: #3f4759;
+      --color-on-secondary-container: #dae2f9;
+      --color-tertiary: #debbdf;
+      --color-on-tertiary: #402843;
+      --color-tertiary-container: #583e5b;
+      --color-on-tertiary-container: #fbd7fb;
+      --color-error: #ffb4a9;
+      --color-error-container: #930006;
+      --color-on-error: #680003;
+      --color-on-error-container: #ffdad4;
+      --color-background: #1b1b1e;
+      --color-on-background: #e4e2e6;
+      --color-surface: #1b1b1e;
+      --color-on-surface: #e4e2e6;
+      --color-surface-variant: #44474f;
+      --color-on-surface-variant: #c4c6d0;
+      --color-outline: #8e9099;
+      --color-inverse-on-surface: #1b1b1e;
+      --color-inverse-surface: #e4e2e6;
+      --color-inverse-primary: #005ac5;
+      --color-shadow: #000000;
+    }
+  `;
 }
 
 export const consts = {
@@ -64,6 +125,35 @@ export const consts = {
   s72: "18rem",
   s80: "20rem",
   s96: "24rem",
+  color: {
+    primary: "var(--color-primary)",
+    onPrimary: "var(--color-on-primary)",
+    primaryContainer: "var(--color-primary-container)",
+    onPrimaryContainer: "var(--color-on-primary-container)",
+    secondary: "var(--color-secondary)",
+    onSecondary: "var(--color-on-secondary)",
+    secondaryContainer: "var(--color-secondary-container)",
+    onSecondaryContainer: "var(--color-on-secondary-container)",
+    tertiary: "var(--color-tertiary)",
+    onTertiary: "var(--color-on-tertiary)",
+    tertiaryContainer: "var(--color-tertiary-container)",
+    onTertiaryContainer: "var(--color-on-tertiary-container)",
+    error: "var(--color-error)",
+    errorContainer: "var(--color-error-container)",
+    onError: "var(--color-on-error)",
+    onErrorContainer: "var(--color-on-error-container)",
+    background: "var(--color-background)",
+    onBackground: "var(--color-on-background)",
+    surface: "var(--color-surface)",
+    onSurface: "var(--color-on-surface)",
+    surfaceVariant: "var(--color-surface-variant)",
+    onSurfaceVariant: "var(--color-on-surface-variant)",
+    outline: "var(--color-outline)",
+    inverseOnSurface: "var(--color-inverse-on-surface)",
+    inverseSurface: "var(--color-inverse-surface)",
+    inversePrimary: "var(--color-inverse-primary)",
+    shadow: "var(--color-shadow)",
+  },
   c1: "#1A1A2E",
   c2: "#16213E",
   c3: "#0F3460",
