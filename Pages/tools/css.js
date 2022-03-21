@@ -1,4 +1,4 @@
-import { cache } from "@emotion/css";
+import { css, cache } from "@emotion/css";
 cache.sheet.key = cache.key = "a";
 export class _style {
   constructor() {
@@ -294,63 +294,65 @@ export const consts = {
 /*
 DARK MODE material builder
 
---md-sys-color-primary: #acc7ff;
-    --md-sys-color-on-primary: #002e6c;
-    --md-sys-color-primary-container: #004397;
-    --md-sys-color-on-primary-container: #d6e2ff;
-    --md-sys-color-secondary: #bfc6dc;
-    --md-sys-color-on-secondary: #283041;
-    --md-sys-color-secondary-container: #3f4759;
-    --md-sys-color-on-secondary-container: #dae2f9;
-    --md-sys-color-tertiary: #debbdf;
-    --md-sys-color-on-tertiary: #402843;
-    --md-sys-color-tertiary-container: #583e5b;
-    --md-sys-color-on-tertiary-container: #fbd7fb;
-    --md-sys-color-error: #ffb4a9;
-    --md-sys-color-error-container: #930006;
-    --md-sys-color-on-error: #680003;
-    --md-sys-color-on-error-container: #ffdad4;
-    --md-sys-color-background: #1b1b1e;
-    --md-sys-color-on-background: #e4e2e6;
-    --md-sys-color-surface: #1b1b1e;
-    --md-sys-color-on-surface: #e4e2e6;
-    --md-sys-color-surface-variant: #44474f;
-    --md-sys-color-on-surface-variant: #c4c6d0;
-    --md-sys-color-outline: #8e9099;
-    --md-sys-color-inverse-on-surface: #1b1b1e;
-    --md-sys-color-inverse-surface: #e4e2e6;
-    --md-sys-color-inverse-primary: #005ac5;
-    --md-sys-color-shadow: #000000;
+.darkMode{
+    --color-primary: #acc7ff;
+    --color-on-primary: #002e6c;
+    --color-primary-container: #004397;
+    --color-on-primary-container: #d6e2ff;
+    --color-secondary: #bfc6dc;
+    --color-on-secondary: #283041;
+    --color-secondary-container: #3f4759;
+    --color-on-secondary-container: #dae2f9;
+    --color-tertiary: #debbdf;
+    --color-on-tertiary: #402843;
+    --color-tertiary-container: #583e5b;
+    --color-on-tertiary-container: #fbd7fb;
+    --color-error: #ffb4a9;
+    --color-error-container: #930006;
+    --color-on-error: #680003;
+    --color-on-error-container: #ffdad4;
+    --color-background: #1b1b1e;
+    --color-on-background: #e4e2e6;
+    --color-surface: #1b1b1e;
+    --color-on-surface: #e4e2e6;
+    --color-surface-variant: #44474f;
+    --color-on-surface-variant: #c4c6d0;
+    --color-outline: #8e9099;
+    --color-inverse-on-surface: #1b1b1e;
+    --color-inverse-surface: #e4e2e6;
+    --color-inverse-primary: #005ac5;
+    --color-shadow: #000000;
+}
 
 Light Theme material
 
 
-    --md-sys-color-primary: #005ac5;
-    --md-sys-color-on-primary: #ffffff;
-    --md-sys-color-primary-container: #d6e2ff;
-    --md-sys-color-on-primary-container: #001a43;
-    --md-sys-color-secondary: #575e71;
-    --md-sys-color-on-secondary: #ffffff;
-    --md-sys-color-secondary-container: #dae2f9;
-    --md-sys-color-on-secondary-container: #141b2c;
-    --md-sys-color-tertiary: #715574;
-    --md-sys-color-on-tertiary: #ffffff;
-    --md-sys-color-tertiary-container: #fbd7fb;
-    --md-sys-color-on-tertiary-container: #29132d;
-    --md-sys-color-error: #ba1b1b;
-    --md-sys-color-error-container: #ffdad4;
-    --md-sys-color-on-error: #ffffff;
-    --md-sys-color-on-error-container: #410001;
-    --md-sys-color-background: #fdfbff;
-    --md-sys-color-on-background: #1b1b1e;
-    --md-sys-color-surface: #fdfbff;
-    --md-sys-color-on-surface: #1b1b1e;
-    --md-sys-color-surface-variant: #e1e2ec;
-    --md-sys-color-on-surface-variant: #44474f;
-    --md-sys-color-outline: #74777f;
-    --md-sys-color-inverse-on-surface: #f2f0f4;
-    --md-sys-color-inverse-surface: #2f3033;
-    --md-sys-color-inverse-primary: #acc7ff;
-    --md-sys-color-shadow: #000000;
+    --color-primary: #005ac5;
+    --color-on-primary: #ffffff;
+    --color-primary-container: #d6e2ff;
+    --color-on-primary-container: #001a43;
+    --color-secondary: #575e71;
+    --color-on-secondary: #ffffff;
+    --color-secondary-container: #dae2f9;
+    --color-on-secondary-container: #141b2c;
+    --color-tertiary: #715574;
+    --color-on-tertiary: #ffffff;
+    --color-tertiary-container: #fbd7fb;
+    --color-on-tertiary-container: #29132d;
+    --color-error: #ba1b1b;
+    --color-error-container: #ffdad4;
+    --color-on-error: #ffffff;
+    --color-on-error-container: #410001;
+    --color-background: #fdfbff;
+    --color-on-background: #1b1b1e;
+    --color-surface: #fdfbff;
+    --color-on-surface: #1b1b1e;
+    --color-surface-variant: #e1e2ec;
+    --color-on-surface-variant: #44474f;
+    --color-outline: #74777f;
+    --color-inverse-on-surface: #f2f0f4;
+    --color-inverse-surface: #2f3033;
+    --color-inverse-primary: #acc7ff;
+    --color-shadow: #000000;
 
 */

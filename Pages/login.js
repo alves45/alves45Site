@@ -1,12 +1,15 @@
 import { css, keyframes } from "@emotion/css";
+import page from "./tools/classPages.js";
 import { consts } from "./tools/css.js";
 import _inputTxt from "./components/inputTxt.js";
-import page from "./tools/classPages.js";
+import _card from "./components/card.js";
 
 export default class extends page {
   render = () => {
     let document = this.window.document;
-    var inputTxt = new _inputTxt(this);
+    this.document = document;
+    let card = new _card(this).render;
+    let inputTxt = new _inputTxt(this).render;
     this.style.addG(css`
       body {
         display: flex;
@@ -14,16 +17,14 @@ export default class extends page {
         align-items: center;
       }
     `);
-    const card = document.createElement("div");
-    document.body.appendChild(card);
-    const user = inputTxt.render({
+    const user = inputTxt({
       label: "Usuário",
       required: true,
       type: "text",
       pattern: "[0-9]*",
       title: "Só para testar mesmo, só pode ter números",
     });
-    const password = inputTxt.render({
+    const password = inputTxt({
       label: "Senha",
       required: true,
       type: "password",
@@ -36,20 +37,8 @@ export default class extends page {
       color: consts.c3,
     });
     headerCard.className = headerCardStyle;
-    const styleCard = css({
-      backgroundColor: consts.c5,
-      padding: consts.s5,
-      marginLeft: consts.s1,
-      marginRight: consts.s1,
-      borderRadius: consts.s2,
-      width: "90%",
-      "@media (pointer: fine)": {
-        width: "auto",
-      },
-    });
-    card.className = styleCard;
-    this.style.add(styleCard, headerCardStyle);
-    card.append(headerCard, user, password);
+    this.style.add(headerCardStyle);
+    document.body.appendChild(card([headerCard, user, password]));
     super.render();
   };
 }

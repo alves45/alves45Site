@@ -1,11 +1,11 @@
 import { css } from "@emotion/css";
 import { consts } from "../tools/css.js";
 import { func2str } from "../tools/js2str.js";
-export default class inputTxt {
+import component from "./component.js";
+export default class extends component {
   constructor(that) {
-    /**@type {Window} */
-    this.document = that.window.document;
-    that.style.add(this.style);
+    super(that);
+    super.builder(that, this);
   }
   style = (() => {
     const heightSize = consts.s7;
