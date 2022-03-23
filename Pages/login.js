@@ -10,13 +10,15 @@ export default class extends page {
     this.document = document;
     let card = new _card(this).render;
     let inputTxt = new _inputTxt(this).render;
-    this.style.addG(css`
-      body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    `);
+    this.style.addG(
+      css({
+        body: {
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        },
+      })
+    );
     const user = inputTxt({
       label: "Usuário",
       required: true,
@@ -34,7 +36,7 @@ export default class extends page {
     const headerCardStyle = css({
       marginBottom: consts.s4,
       fontSize: consts.s6,
-      color: consts.c3,
+      color: consts.color.onPrimary,
     });
     headerCard.className = headerCardStyle;
     this.style.add(headerCardStyle);

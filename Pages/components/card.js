@@ -10,7 +10,7 @@ export default class extends component {
   }
   style = (() => {
     return css({
-      backgroundColor: consts.c5,
+      backgroundColor: consts.color.secondary,
       padding: consts.s5,
       marginLeft: consts.s1,
       marginRight: consts.s1,
@@ -22,9 +22,9 @@ export default class extends component {
     });
   })();
   /**
-   *func2str
+   *render
    * @param {Function} render
-   * @return {[HTMLElement], HTMLElement}
+   * @return {HTMLElement}
    */
   render = (() => {
     let { args, body } = func2str((props) => {

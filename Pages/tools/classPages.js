@@ -79,12 +79,13 @@ export default class {
           },
         },
         body: {
-          backgroundColor: consts.gray900,
+          backgroundColor: consts.color.background,
         },
       })
     );
     styleDOM.innerHTML = this.style.buildStyles();
     document.head.appendChild(styleDOM);
+    document.body.classList.add("darkMode");
     if (process.env.NODE_ENV !== "production") {
       this.HTML = document.documentElement.innerHTML;
       this.compress = "utf-8";
