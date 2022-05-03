@@ -36,7 +36,7 @@ export default class extends page {
     const headerCardStyle = css({
       marginBottom: consts.s4,
       fontSize: consts.s6,
-      color: consts.color.onPrimary,
+      color: consts.colors.onPrimary,
     });
     headerCard.className = headerCardStyle;
     this.style.add(headerCardStyle);

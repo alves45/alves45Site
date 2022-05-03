@@ -18,6 +18,7 @@ export default class extends component {
       display: flex;
       flex-direction: column;
       label {
+        color: ${consts.colors.background};
         font-size: ${fontSize};
         order: 1;
         transform: translateY(${parseFloat(heightSize) * 0.8 + "rem"});
@@ -27,7 +28,7 @@ export default class extends component {
         order: 3;
         transform: scaleX(0) translateY(-${smallBottomBorder});
         height: 0;
-        border-top: ${bottomBorder} solid ${consts.blue700};
+        border-top: ${bottomBorder} solid ${consts.colors.background};
       }
       input {
         height: ${heightSize};

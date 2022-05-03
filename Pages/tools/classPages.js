@@ -79,13 +79,13 @@ export default class {
           },
         },
         body: {
-          backgroundColor: consts.color.background,
+          backgroundColor: consts.colors.background,
+          height: "100%",
         },
       })
     );
     styleDOM.innerHTML = this.style.buildStyles();
     document.head.appendChild(styleDOM);
-    document.body.classList.add("darkMode");
     if (process.env.NODE_ENV !== "production") {
       this.HTML = document.documentElement.innerHTML;
       this.compress = "utf-8";
@@ -95,5 +95,6 @@ export default class {
       );
       this.compress = "br";
     }
+    fs.writeFileSync("csspage.css", this.style.buildStyles());
   }
 }
