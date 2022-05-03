@@ -54,7 +54,7 @@ export default class extends component {
       }
       input:required ~ label::after {
         content: "*";
-        color: ${consts.blue700};
+        color: ${consts.blue800};
       }
       input:valid ~ label::after {
         content: "";
