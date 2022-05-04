@@ -12,57 +12,57 @@ export default class extends component {
     const fontSize = consts.s4;
     const bottomBorder = consts.s0_5;
     const smallBottomBorder = parseFloat(bottomBorder) / 2 + "rem";
-    return css`
-      margin-top: ${consts.s2};
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      label {
-        color: ${consts.colors.background};
-        font-size: ${fontSize};
-        order: 1;
-        transform: translateY(${parseFloat(heightSize) * 0.8 + "rem"});
-        pointer-events: none;
-      }
-      span {
-        order: 3;
-        transform: scaleX(0) translateY(-${smallBottomBorder});
-        height: 0;
-        border-top: ${bottomBorder} solid ${consts.colors.background};
-      }
-      input {
-        height: ${heightSize};
-        width: 100%;
-        font-size: ${fontSize};
-        order: 2;
-        background-color: transparent;
-        outline: none;
-        border: 0;
-        border-bottom: ${smallBottomBorder} solid black;
-      }
-      input:invalid:not(:placeholder-shown, :focus-within) ~ label,
-      input:invalid:not(:placeholder-shown, :focus-within) {
-        color: ${consts.red700};
-        border-color: ${consts.red700};
-      }
-      :focus-within label {
-        transform: translate(-10%, 15%) scale(0.8);
-        color: ${consts.blue700};
-      }
-      input:not(:placeholder-shown) ~ label {
-        transform: translate(-10%, 15%) scale(0.8);
-      }
-      input:required ~ label::after {
-        content: "*";
-        color: ${consts.blue800};
-      }
-      input:valid ~ label::after {
-        content: "";
-      }
-      :focus-within span {
-        transform: scaleX(1) translateY(-${smallBottomBorder});
-      }
-    `;
+    return css({
+      marginTop: consts.s2,
+      width: "100%",
+      display: "flex",
+      flexDirection: "column",
+      label: {
+        color: consts.colors.background,
+        fontSize: fontSize,
+        order: 1,
+        transform: `translateY(${parseFloat(heightSize) * 0.8 + "rem"})`,
+        pointerEvents: "none",
+      },
+      span: {
+        order: 3,
+        transform: `scaleX(0) translateY(-${smallBottomBorder})`,
+        height: 0,
+        borderTop: `${bottomBorder} solid ${consts.colors.background}`,
+      },
+      input: {
+        height: heightSize,
+        width: "100%",
+        fontSize: fontSize,
+        order: 2,
+        backgroundColor: "transparent",
+        outline: "none",
+        border: 0,
+        borderBottom: `${smallBottomBorder} solid black`,
+      },
+      "input:invalid:not(:placeholder-shown, :focus-within) ~ label, input:invalid:not(:placeholder-shown, :focus-within)":
+        {
+          color: consts.red700,
+          borderColor: consts.red700,
+        },
+      ":focus-within label": {
+        transform: `translate(-10%, 15%) scale(0.8)`,
+        color: consts.blue700,
+      },
+      "input:not(:placeholder-shown) ~ label": {
+        transform: `translate(-10%, 15%) scale(0.8)`,
+      },
+      "input:required ~ label::after": {
+        content: '"*"',
+        color: consts.blue800,
+      },
+      "input:valid ~ label::after": {
+        content: '""',
+      },
+      ":focus-within span": {
+        transform: `scaleX(1) translateY(-${smallBottomBorder})`,
+      },
+    });
   })();
   render = (() => {
     let { args, body } = func2str((props) => {
