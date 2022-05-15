@@ -3,6 +3,7 @@ import page from "./tools/classPages.js";
 import { consts } from "./tools/css.js";
 import _inputTxt from "./components/inputTxt.js";
 import _card from "./components/card.js";
+import _button from "./components/button.js";
 
 export default class extends page {
   render = () => {
@@ -10,6 +11,7 @@ export default class extends page {
     this.document = document;
     let card = new _card(this).render;
     let inputTxt = new _inputTxt(this).render;
+    let button = new _button(this).render;
     this.style.addG(
       css({
         body: {
@@ -31,6 +33,7 @@ export default class extends page {
       required: true,
       type: "password",
     });
+    const confirm = button({ label: "Entrar" });
     const headerCard = document.createElement("h1");
     headerCard.textContent = "LOGIN";
     const headerCardStyle = css({
@@ -40,7 +43,7 @@ export default class extends page {
     });
     headerCard.className = headerCardStyle;
     this.style.add(headerCardStyle);
-    document.body.appendChild(card([headerCard, user, password]));
+    document.body.appendChild(card([headerCard, user, password, confirm]));
     super.render();
   };
 }
