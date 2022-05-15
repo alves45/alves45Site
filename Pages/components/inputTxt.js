@@ -13,10 +13,11 @@ export default class extends component {
     const bottomBorder = consts.s0_5;
     const smallBottomBorder = parseFloat(bottomBorder) / 2 + "rem";
     return css({
-      marginTop: consts.s2,
       width: "100%",
       display: "flex",
       flexDirection: "column",
+      marginTop: consts.s2,
+      marginBottom: consts.s2,
       label: {
         color: consts.colors.background,
         fontSize: fontSize,
@@ -32,7 +33,6 @@ export default class extends component {
       },
       input: {
         height: heightSize,
-        width: "100%",
         fontSize: fontSize,
         order: 2,
         backgroundColor: "transparent",
@@ -76,18 +76,18 @@ export default class extends component {
         },
         props
       );
-      const inputTxt = this.document.createElement("div");
-      inputTxt.innerHTML = `<div class="replaceThisTextWithTheClassCss">
-      <span></span>
-      <input placeholder=" "type="${props.type}"${
-        props.required ? "required" : ""
-      }
-      ${props.pattern ? 'pattern="' + props.pattern + '"' : ""}
-      ${props.title ? 'title="' + props.title + '"' : ""}/>
-      <label>${props.label}
-      </label>
-    </div>`;
-      return inputTxt;
+      const component = this.document.createElement("div");
+      component.classList.add("replaceThisTextWithTheClassCss");
+      const input = this.document.createElement("input");
+      input.placeholder = " ";
+      input.type = props.type;
+      input.required = props.required;
+      input.pattern = props.pattern;
+      input.title = props.type | props.label;
+      const label = this.document.createElement("label");
+      label.innerHTML = props.label;
+      component.append(this.document.createElement("span"), input, label);
+      return component;
     });
     const thisFunction = Function(
       ...args,
