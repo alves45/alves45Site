@@ -7,4 +7,5 @@ export default class {
     thatPage.style.add(thatComponent.style);
     this.render = thatComponent.render.bind(thatPage);
   }
+  replaceClassCss = "replaceClassCss";
 }
