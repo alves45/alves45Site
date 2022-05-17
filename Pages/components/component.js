@@ -1,3 +1,5 @@
+import { func2str } from "../tools/js2str.js";
+
 export default class {
   constructor(thatPage, thatComponent) {
     /**@type {Document} */
@@ -5,7 +7,23 @@ export default class {
   }
   builder(thatPage, thatComponent) {
     thatPage.style.add(thatComponent.style);
-    this.render = thatComponent.render.bind(thatPage);
+    thatComponent.render = thatComponent.render.bind(thatPage);
+  }
+  /**
+   * @param {Void}
+   * @return {function(): HTMLElement}
+   */
+  buildRender() {
+    let { args, body } = func2str(this.preRender);
+    const render = Function(
+      ...args,
+      body.replace(this.replaceClassCss, this.style)
+    );
+    /**
+     * @param {object} props
+     * @returns {HTMLElement}
+     */
+    return render;
   }
   replaceClassCss = "replaceClassCss";
 }

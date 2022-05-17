@@ -64,35 +64,41 @@ export default class extends component {
       },
     });
   })();
-  render = (() => {
-    let { args, body } = func2str((props) => {
-      props = Object.assign(
-        {
-          label: "Type something",
-          required: false,
-          type: "text",
-          pattern: "",
-          title: "",
-        },
-        props
-      );
-      const component = this.document.createElement("div");
-      component.classList.add("replaceThisTextWithTheClassCss");
-      const input = this.document.createElement("input");
-      input.placeholder = " ";
-      input.type = props.type;
-      input.required = props.required;
-      input.pattern = props.pattern;
-      input.title = props.type | props.label;
-      const label = this.document.createElement("label");
-      label.innerHTML = props.label;
-      component.append(this.document.createElement("span"), input, label);
-      return component;
-    });
-    const thisFunction = Function(
-      ...args,
-      body.replace("replaceThisTextWithTheClassCss", this.style)
+  preRender = (props) => {
+    props = Object.assign(
+      {
+        label: "Type something",
+        required: false,
+        type: "text",
+        pattern: "",
+        title: "",
+      },
+      props
     );
-    return thisFunction;
-  })();
+    const component = this.document.createElement("div");
+    component.classList.add("replaceClassCss");
+    const input = this.document.createElement("input");
+    input.placeholder = " ";
+    input.type = props.type;
+    input.required = props.required;
+    input.pattern = props.pattern;
+    input.title = props.type | props.label;
+    const label = this.document.createElement("label");
+    label.innerHTML = props.label;
+    component.append(this.document.createElement("span"), input, label);
+    return component;
+  };
+  /**
+   * @typedef {Object} props
+   * @property {string} label
+   * @property {boolean} required
+   * @property {(text | password)} type
+   * @property {RegExp} pattern
+   * @property {string} title
+   * /
+   /**
+    * @param {props} props
+   * @returns {HTMLInputElement}
+   */
+  render = this.buildRender();
 }

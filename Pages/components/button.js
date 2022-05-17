@@ -1,6 +1,5 @@
 import { css } from "@emotion/css";
 import { consts } from "../tools/css.js";
-import { func2str } from "../tools/js2str.js";
 import component from "./component.js";
 export default class extends component {
   constructor(that) {
@@ -24,25 +23,18 @@ export default class extends component {
       },
     });
   })();
-  render = (() => {
-    let { args, body } = func2str((props) => {
-      props = Object.assign(
-        {
-          label: "OK",
-        },
-        props
-      );
-      const button = this.document.createElement("button");
-      button.classList.add(replaceClassCss);
-      button.innerHTML = '<button class="a-19pn3u7"><button>';
-      button.innerHTML = props.label;
-      button.type = "button";
-      return button;
-    });
-    const thisFunction = Function(
-      ...args,
-      body.replace(this.replaceClassCss, '"' + this.style + '"')
+  preRender = (props) => {
+    props = Object.assign(
+      {
+        label: "OK",
+      },
+      props
     );
-    return thisFunction;
-  })();
+    const button = this.document.createElement("button");
+    button.classList.add("replaceClassCss");
+    button.innerHTML = props.label;
+    button.type = "button";
+    return button;
+  };
+  render = this.buildRender();
 }
