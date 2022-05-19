@@ -4,7 +4,7 @@ export class _style {
   constructor() {
     this.global = [];
     this.classCss = [];
-    this.addG(this.colorsCss);
+    this.addG(this.colorsCssClass);
   }
   add = (...args) => {
     this.classCss = this.classCss.concat(args);
@@ -29,7 +29,46 @@ export class _style {
       .concat(this.classCss.map(getStyle))
       .join("");
   }
-  colorsCss = css`
+  colorsCss = [
+    { name: "--color-primary", value: "#acc7ff" },
+    { name: "--color-on-primary", value: "#002e6c" },
+    { name: "--color-primary-container", value: "#004397" },
+    { name: "--color-on-primary-container", value: "#d6e2ff" },
+    { name: "--color-secondary", value: "#bfc6dc" },
+    { name: "--color-on-secondary", value: "#283041" },
+    { name: "--color-secondary-container", value: "#3f4759" },
+    { name: "--color-on-secondary-container", value: "#dae2f9" },
+    { name: "--color-tertiary", value: "#debbdf" },
+    { name: "--color-on-tertiary", value: "#402843" },
+    { name: "--color-tertiary-container", value: "#583e5b" },
+    { name: "--color-on-tertiary-container", value: "#fbd7fb" },
+    { name: "--color-error", value: "#b91c1c" },
+    { name: "--color-error-container", value: "#930006" },
+    { name: "--color-on-error", value: "#680003" },
+    { name: "--color-on-error-container", value: "#ffdad4" },
+    { name: "--color-background", value: "#1b1b1e" },
+    { name: "--color-on-background", value: "#e4e2e6" },
+    { name: "--color-surface", value: "#1b1b1e" },
+    { name: "--color-on-surface", value: "#e4e2e6" },
+    { name: "--color-surface-variant", value: "#44474f" },
+    { name: "--color-on-surface-variant", value: "#c4c6d0" },
+    { name: "--color-outline", value: "#8e9099" },
+    { name: "--color-inverse-on-surface", value: "#1b1b1e" },
+    { name: "--color-inverse-surface", value: "#e4e2e6" },
+    { name: "--color-inverse-primary", value: "#005ac5" },
+    { name: "--color-shadow", value: "#000000" },
+  ];
+  colorsCssClass = css(
+    ":root{" +
+      this.colorsCss
+        .map(
+          (color, index) =>
+            "--" + String.fromCharCode(index + 65) + ": " + color.value + ";"
+        )
+        .join() +
+      "}"
+  );
+  colorsCssClass = css`
     :root {
       --color-primary: #acc7ff;
       --color-on-primary: #002e6c;
@@ -43,7 +82,7 @@ export class _style {
       --color-on-tertiary: #402843;
       --color-tertiary-container: #583e5b;
       --color-on-tertiary-container: #fbd7fb;
-      --color-error: #ffb4a9;
+      --color-error: #b91c1c;
       --color-error-container: #930006;
       --color-on-error: #680003;
       --color-on-error-container: #ffdad4;
@@ -60,70 +99,59 @@ export class _style {
       --color-shadow: #000000;
     }
   `;
-  // colorsCss = css`   //Colors with dark and light mode but is ugly :v
-  //   :root {
-  //     --color-primary: #005ac5;
-  //     --color-on-primary: #ffffff;
-  //     --color-primary-container: #d6e2ff;
-  //     --color-on-primary-container: #001a43;
-  //     --color-secondary: #575e71;
-  //     --color-on-secondary: #ffffff;
-  //     --color-secondary-container: #dae2f9;
-  //     --color-on-secondary-container: #141b2c;
-  //     --color-tertiary: #715574;
-  //     --color-on-tertiary: #ffffff;
-  //     --color-tertiary-container: #fbd7fb;
-  //     --color-on-tertiary-container: #29132d;
-  //     --color-error: #ba1b1b;
-  //     --color-error-container: #ffdad4;
-  //     --color-on-error: #ffffff;
-  //     --color-on-error-container: #410001;
-  //     --color-background: #fdfbff;
-  //     --color-on-background: #1b1b1e;
-  //     --color-surface: #fdfbff;
-  //     --color-on-surface: #1b1b1e;
-  //     --color-surface-variant: #e1e2ec;
-  //     --color-on-surface-variant: #44474f;
-  //     --color-outline: #74777f;
-  //     --color-inverse-on-surface: #f2f0f4;
-  //     --color-inverse-surface: #2f3033;
-  //     --color-inverse-primary: #acc7ff;
-  //     --color-shadow: #000000;
-  //   }
-  //   .darkMode {
-  //     --color-primary: #acc7ff;
-  //     --color-on-primary: #002e6c;
-  //     --color-primary-container: #004397;
-  //     --color-on-primary-container: #d6e2ff;
-  //     --color-secondary: #bfc6dc;
-  //     --color-on-secondary: #283041;
-  //     --color-secondary-container: #3f4759;
-  //     --color-on-secondary-container: #dae2f9;
-  //     --color-tertiary: #debbdf;
-  //     --color-on-tertiary: #402843;
-  //     --color-tertiary-container: #583e5b;
-  //     --color-on-tertiary-container: #fbd7fb;
-  //     --color-error: #ffb4a9;
-  //     --color-error-container: #930006;
-  //     --color-on-error: #680003;
-  //     --color-on-error-container: #ffdad4;
-  //     --color-background: #1b1b1e;
-  //     --color-on-background: #e4e2e6;
-  //     --color-surface: #1b1b1e;
-  //     --color-on-surface: #e4e2e6;
-  //     --color-surface-variant: #44474f;
-  //     --color-on-surface-variant: #c4c6d0;
-  //     --color-outline: #8e9099;
-  //     --color-inverse-on-surface: #1b1b1e;
-  //     --color-inverse-surface: #e4e2e6;
-  //     --color-inverse-primary: #005ac5;
-  //     --color-shadow: #000000;
-  //   }
-  // `;
 }
 
+let colorsCss = {
+  primary: { name: "--color-primary", value: "#acc7ff" },
+  onPrimary: { name: "--color-on-primary", value: "#002e6c" },
+  primaryContainer: { name: "--color-primary-container", value: "#004397" },
+  onPrimaryContainer: {
+    name: "--color-on-primary-container",
+    value: "#d6e2ff",
+  },
+  secondary: { name: "--color-secondary", value: "#bfc6dc" },
+  onSecondary: { name: "--color-on-secondary", value: "#283041" },
+  secondaryContainer: { name: "--color-secondary-container", value: "#3f4759" },
+  onSecondaryContainer: {
+    name: "--color-on-secondary-container",
+    value: "#dae2f9",
+  },
+  tertiary: { name: "--color-tertiary", value: "#debbdf" },
+  onTertiary: { name: "--color-on-tertiary", value: "#402843" },
+  tertiaryContainer: { name: "--color-tertiary-container", value: "#583e5b" },
+  onTertiaryContainer: {
+    name: "--color-on-tertiary-container",
+    value: "#fbd7fb",
+  },
+  error: { name: "--color-error", value: "#b91c1c" },
+  errorContainer: { name: "--color-error-container", value: "#930006" },
+  onError: { name: "--color-on-error", value: "#680003" },
+  onErrorContainer: { name: "--color-on-error-container", value: "#ffdad4" },
+  background: { name: "--color-background", value: "#1b1b1e" },
+  onBackground: { name: "--color-on-background", value: "#e4e2e6" },
+  surface: { name: "--color-surface", value: "#1b1b1e" },
+  onSurface: { name: "--color-on-surface", value: "#e4e2e6" },
+  surfaceVariant: { name: "--color-surface-variant", value: "#44474f" },
+  onSurfaceVariant: { name: "--color-on-surface-variant", value: "#c4c6d0" },
+  outline: { name: "--color-outline", value: "#8e9099" },
+  inverseOnSurface: { name: "--color-inverse-on-surface", value: "#1b1b1e" },
+  inverseSurface: { name: "--color-inverse-surface", value: "#e4e2e6" },
+  inversePrimary: { name: "--color-inverse-primary", value: "#005ac5" },
+  shadow: { name: "--color-shadow", value: "#000000" },
+};
+
+let colors = {};
+Object.keys(colorsCss)
+  .map((color, index) => {
+    return color + ":" + colorsCss[color].value + ",";
+  })
+  .join();
+
+console.log(colors);
 export const consts = {
+  s0_25: "0.06rem",
   s0_5: "0.125rem",
+  s0_75: "0.15rem",
   s1: "0.25rem",
   s1_5: "0.375rem",
   s2: "0.5rem",
@@ -184,6 +212,7 @@ export const consts = {
     inverseSurface: "var(--color-inverse-surface)",
     inversePrimary: "var(--color-inverse-primary)",
     shadow: "var(--color-shadow)",
+    factor: (color, factor) => {},
   },
   c1: "#1A1A2E",
   c2: "#16213E",
