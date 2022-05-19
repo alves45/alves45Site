@@ -10,8 +10,8 @@ export default class extends component {
   style = (() => {
     const heightSize = consts.s7;
     const fontSize = consts.s4;
-    const bottomBorder = consts.s0_5;
-    const smallBottomBorder = parseFloat(bottomBorder) / 2 + "rem";
+    const bottomBorder = consts.s0_75;
+    const smallBottomBorder = consts.s0_25;
     return css({
       width: "100%",
       display: "flex",
@@ -22,7 +22,9 @@ export default class extends component {
         color: consts.colors.background,
         fontSize: fontSize,
         order: 1,
-        transform: `translateY(${parseFloat(heightSize) * 0.8 + "rem"})`,
+        transform: `translateY(${
+          (parseFloat(heightSize) * 0.8).toFixed(1) + "rem"
+        })`,
         pointerEvents: "none",
       },
       span: {
@@ -38,29 +40,33 @@ export default class extends component {
         backgroundColor: "transparent",
         outline: "none",
         border: 0,
-        borderBottom: `${smallBottomBorder} solid black`,
+        borderBottom: `${smallBottomBorder} solid ${consts.colors.background}`,
+      },
+      "input:focus-within": {
+        borderBottom: `${smallBottomBorder} solid ${consts.colors.primaryContainer}`,
       },
       "input:invalid:not(:placeholder-shown, :focus-within) ~ label, input:invalid:not(:placeholder-shown, :focus-within)":
         {
-          color: consts.red700,
-          borderColor: consts.red700,
+          color: consts.colors.error,
+          borderColor: consts.colors.error,
         },
       ":focus-within label": {
         transform: `translate(-10%, 15%) scale(0.8)`,
-        color: consts.blue700,
+        color: consts.colors.primaryContainer,
       },
       "input:not(:placeholder-shown) ~ label": {
         transform: `translate(-10%, 15%) scale(0.8)`,
       },
       "input:required ~ label::after": {
         content: '"*"',
-        color: consts.blue800,
+        color: consts.colors.primaryContainer,
       },
       "input:valid ~ label::after": {
         content: '""',
       },
       ":focus-within span": {
         transform: `scaleX(1) translateY(-${smallBottomBorder})`,
+        borderTop: `${bottomBorder} solid ${consts.colors.primaryContainer}`,
       },
     });
   })();
@@ -71,7 +77,7 @@ export default class extends component {
         required: false,
         type: "text",
         pattern: "",
-        title: "",
+        title: "aaaaaaaaaaaaaaaa",
       },
       props
     );
@@ -82,7 +88,7 @@ export default class extends component {
     input.type = props.type;
     input.required = props.required;
     input.pattern = props.pattern;
-    input.title = props.type | props.label;
+    input.title = props.title || props.label;
     const label = this.document.createElement("label");
     label.innerHTML = props.label;
     component.append(this.document.createElement("span"), input, label);
