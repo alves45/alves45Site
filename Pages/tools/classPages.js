@@ -95,6 +95,5 @@ export default class {
       );
       this.compress = "br";
     }
-    fs.writeFileSync("csspage.css", this.style.buildStyles());
   }
 }
