@@ -16,10 +16,10 @@ export default class extends component {
       marginBottom: consts.s2,
       borderRadius: consts.s2,
       color: consts.colors.onBackground,
-      outline: "none",
       border: "none",
+      cursor: "pointer",
       ":focus": {
-        // boxShadow: consts.s1 + consts.s1 + consts.colors.background,
+        color: "",
       },
     });
   })();
