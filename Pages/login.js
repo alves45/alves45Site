@@ -25,13 +25,13 @@ export default class extends page {
       label: "Usuário",
       required: true,
       type: "text",
-      pattern: "[0-9]*",
-      title: "Só para testar mesmo, só pode ter números",
+      title: "Digite o nome de usuário",
     });
     const password = inputTxt({
       label: "Senha",
       required: true,
       type: "password",
+      title: "Digite a senha do usuário",
     });
     const confirm = button({ label: "Entrar" });
     const headerCard = document.createElement("h1");
