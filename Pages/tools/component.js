@@ -1,4 +1,22 @@
-import { func2str } from "../tools/js2str.js";
+import { func2str } from "./js2str.js";
+import { promises as fs } from "fs";
+import path from "path";
+
+let components = {};
+
+const pathComponents = "./Pages/components/";
+
+await (async () => {
+  fs.readdir(pathComponents).then((nameComponents) => {
+    nameComponents.forEach((nameComponent) => {
+      import(path.resolve(pathComponents, nameComponent)).then((component) => {
+        components[nameComponent.slice(".")[0]] = component.default;
+      });
+    });
+  });
+})();
+
+export { components };
 
 export default class {
   constructor(thatPage, thatComponent) {
@@ -6,7 +24,7 @@ export default class {
     this.document = thatPage.window.document;
   }
   builder(thatPage, thatComponent) {
-    thatPage.style.add(thatComponent.style);
+    thatPage.style.add(thatComponent.style || "");
     thatComponent.render = thatComponent.render.bind(thatPage);
   }
   /**
