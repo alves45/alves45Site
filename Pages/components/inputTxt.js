@@ -1,7 +1,7 @@
 import { css } from "@emotion/css";
 import { consts } from "../tools/css.js";
 import { func2str } from "../tools/js2str.js";
-import component from "./component.js";
+import component from "../tools/component.js";
 export default class extends component {
   constructor(that) {
     super(that);
