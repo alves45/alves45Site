@@ -3,13 +3,15 @@ import zlib from "zlib";
 import { JSDOM } from "jsdom";
 import { css, cache } from "@emotion/css";
 import { consts, _style } from "./css.js";
-const whitePage = fs.readFileSync("./whiteWindow.html", "utf8");
+import { components } from "./component.js";
+const whitePage = fs.readFileSync("./Pages/whiteWindow.html", "utf8");
 export default class {
   constructor() {
     /**@type {Window} */
     this.window = new JSDOM(whitePage).window;
     this.HTML = this.compress = "";
     this.style = new _style(cache);
+    // Object.assign(this, components);
   }
   render() {
     let document = this.window.document;
@@ -66,16 +68,16 @@ export default class {
           fontSize: "1rem",
         },
         ":root": {
-          fontSize: "6vw",
+          fontSize: "5vw",
         },
         "@media (max-aspect-ratio: 1/1)": {
           ":root": {
-            fontSize: "6vw",
+            fontSize: "5vw",
           },
         },
         "@media (pointer: fine)": {
           ":root": {
-            fontSize: "min(3vh, 3vw)",
+            fontSize: "min(2.5vh, 2.5vw)",
           },
         },
         body: {
