@@ -1,7 +1,7 @@
 import http from "http";
 import fs from "fs";
 
-const AppUrl = "https://alveslucas.herokuapp.com/";
+const AppUrl = "https://alves45.herokuapp.com/";
 const PORT = process.env.PORT || 3000;
 
 global.app = {
