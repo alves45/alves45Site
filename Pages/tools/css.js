@@ -15,64 +15,22 @@ export class _style {
   };
   buildStyles() {
     const key = cache.key + "-";
-    let getStyle = ((className) => {
+    let getStyle = (className) => {
       className = className.replace(key, "");
-      return cache.inserted[className];
-    }).bind(this);
+      return cache.inserted[className] || "";
+    };
     return this.global
-      .map((thisClass) => {
-        return getStyle(thisClass).replace(
-          RegExp(`${"." + thisClass}\\s*`, "g"),
-          ""
-        );
-      })
+      .map((thisClass) =>
+        getStyle(thisClass).replace(RegExp(`${"." + thisClass}\\s*`, "g"), "")
+      )
       .concat(this.classCss.map(getStyle))
       .join("");
   }
-  colorsCss = [
-    { name: "--color-primary", value: "#acc7ff" },
-    { name: "--color-on-primary", value: "#002e6c" },
-    { name: "--color-primary-container", value: "#004397" },
-    { name: "--color-on-primary-container", value: "#d6e2ff" },
-    { name: "--color-secondary", value: "#bfc6dc" },
-    { name: "--color-on-secondary", value: "#283041" },
-    { name: "--color-secondary-container", value: "#3f4759" },
-    { name: "--color-on-secondary-container", value: "#dae2f9" },
-    { name: "--color-tertiary", value: "#debbdf" },
-    { name: "--color-on-tertiary", value: "#402843" },
-    { name: "--color-tertiary-container", value: "#583e5b" },
-    { name: "--color-on-tertiary-container", value: "#fbd7fb" },
-    { name: "--color-error", value: "#b91c1c" },
-    { name: "--color-error-container", value: "#930006" },
-    { name: "--color-on-error", value: "#680003" },
-    { name: "--color-on-error-container", value: "#ffdad4" },
-    { name: "--color-background", value: "#1b1b1e" },
-    { name: "--color-on-background", value: "#e4e2e6" },
-    { name: "--color-surface", value: "#1b1b1e" },
-    { name: "--color-on-surface", value: "#e4e2e6" },
-    { name: "--color-surface-variant", value: "#44474f" },
-    { name: "--color-on-surface-variant", value: "#c4c6d0" },
-    { name: "--color-outline", value: "#8e9099" },
-    { name: "--color-inverse-on-surface", value: "#1b1b1e" },
-    { name: "--color-inverse-surface", value: "#e4e2e6" },
-    { name: "--color-inverse-primary", value: "#005ac5" },
-    { name: "--color-shadow", value: "#000000" },
-  ];
-  colorsCssClass = css(
-    ":root{" +
-      this.colorsCss
-        .map(
-          (color, index) =>
-            "--" + String.fromCharCode(index + 65) + ": " + color.value + ";"
-        )
-        .join() +
-      "}"
-  );
   colorsCssClass = css`
     :root {
       --color-primary: #acc7ff;
       --color-on-primary: #002e6c;
-      --color-primary-container: #004397;
+      --color-primary-container: #004397;s
       --color-on-primary-container: #d6e2ff;
       --color-secondary: #bfc6dc;
       --color-on-secondary: #283041;
@@ -101,53 +59,6 @@ export class _style {
   `;
 }
 
-let colorsCss = {
-  primary: { name: "--color-primary", value: "#acc7ff" },
-  onPrimary: { name: "--color-on-primary", value: "#002e6c" },
-  primaryContainer: { name: "--color-primary-container", value: "#004397" },
-  onPrimaryContainer: {
-    name: "--color-on-primary-container",
-    value: "#d6e2ff",
-  },
-  secondary: { name: "--color-secondary", value: "#bfc6dc" },
-  onSecondary: { name: "--color-on-secondary", value: "#283041" },
-  secondaryContainer: { name: "--color-secondary-container", value: "#3f4759" },
-  onSecondaryContainer: {
-    name: "--color-on-secondary-container",
-    value: "#dae2f9",
-  },
-  tertiary: { name: "--color-tertiary", value: "#debbdf" },
-  onTertiary: { name: "--color-on-tertiary", value: "#402843" },
-  tertiaryContainer: { name: "--color-tertiary-container", value: "#583e5b" },
-  onTertiaryContainer: {
-    name: "--color-on-tertiary-container",
-    value: "#fbd7fb",
-  },
-  error: { name: "--color-error", value: "#b91c1c" },
-  errorContainer: { name: "--color-error-container", value: "#930006" },
-  onError: { name: "--color-on-error", value: "#680003" },
-  onErrorContainer: { name: "--color-on-error-container", value: "#ffdad4" },
-  background: { name: "--color-background", value: "#1b1b1e" },
-  onBackground: { name: "--color-on-background", value: "#e4e2e6" },
-  surface: { name: "--color-surface", value: "#1b1b1e" },
-  onSurface: { name: "--color-on-surface", value: "#e4e2e6" },
-  surfaceVariant: { name: "--color-surface-variant", value: "#44474f" },
-  onSurfaceVariant: { name: "--color-on-surface-variant", value: "#c4c6d0" },
-  outline: { name: "--color-outline", value: "#8e9099" },
-  inverseOnSurface: { name: "--color-inverse-on-surface", value: "#1b1b1e" },
-  inverseSurface: { name: "--color-inverse-surface", value: "#e4e2e6" },
-  inversePrimary: { name: "--color-inverse-primary", value: "#005ac5" },
-  shadow: { name: "--color-shadow", value: "#000000" },
-};
-
-let colors = {};
-Object.keys(colorsCss)
-  .map((color, index) => {
-    return color + ":" + colorsCss[color].value + ",";
-  })
-  .join();
-
-console.log(colors);
 export const consts = {
   s0_25: "0.06rem",
   s0_5: "0.125rem",
