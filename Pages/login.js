@@ -43,7 +43,9 @@ export default class extends page {
     });
     headerCard.className = headerCardStyle;
     this.style.add(headerCardStyle);
-    document.body.appendChild(card([headerCard, user, password, confirm]));
+    const form = document.createElement("form");
+    form.append(user, password, confirm);
+    document.body.appendChild(card([headerCard, form]));
     super.render();
   };
 }
