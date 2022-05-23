@@ -1,6 +1,6 @@
 import { css } from "@emotion/css";
 import { consts } from "../tools/css.js";
-import component from "./component.js";
+import component from "../tools/component.js";
 export default class extends component {
   constructor(that) {
     super(that);
@@ -18,8 +18,12 @@ export default class extends component {
       color: consts.colors.onBackground,
       border: "none",
       cursor: "pointer",
+      ":hover": {
+        opacity: 0.8,
+      },
       ":focus": {
-        color: "",
+        outline: `${consts.s0_5} solid ${consts.colors.onPrimary}`,
+        outlineOffset: consts.s0_5,
       },
     });
   })();
