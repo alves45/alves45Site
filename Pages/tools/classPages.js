@@ -1,10 +1,14 @@
-import fs from "fs";
+import { promises as fs } from "fs";
+import path from "path";
 import zlib from "zlib";
 import { JSDOM } from "jsdom";
 import { css, cache } from "@emotion/css";
 import { consts, _style } from "./css.js";
-import { components } from "./component.js";
-const whitePage = fs.readFileSync("./Pages/whiteWindow.html", "utf8");
+const whitePage = await fs
+  .readFile("./Pages/whiteWindow.html", "utf8")
+  .catch((err) => console.log("Not load whitePage " + err));
+
+const pathComponents = "./Pages/components/";
 export default class {
   constructor() {
     /**@type {Window} */
@@ -13,10 +17,17 @@ export default class {
     this.style = new _style(cache);
     // Object.assign(this, components);
   }
+  // components2 = await (async () => {
+  //   let _components = {};
+  //   (await fs.readdir(pathComponents)).forEach((nameComponent) => {
+  //     console.log(nameComponent)
+  //     _components[nameComponent.split(".")[0]] = (await import(path.resolve(pathComponents, nameComponent))).default
+  //     })
+  //   return _components;
+  // })();
   render() {
     let document = this.window.document;
     if (process.env.NODE_ENV !== "production") {
-      // if (false) {
       let devReloadScript = document.createElement("script");
       document.head.appendChild(devReloadScript);
       devReloadScript.innerHTML =
