@@ -21,9 +21,13 @@ export default class extends component {
       ":hover": {
         opacity: 0.8,
       },
-      ":focus": {
+      ":focus-within": {
         outline: `${consts.s0_5} solid ${consts.colors.onPrimary}`,
         outlineOffset: consts.s0_5,
+      },
+      ":not(:hover)": {
+        opacity: 1,
+        outline: "none",
       },
     });
   })();
