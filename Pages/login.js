@@ -1,17 +1,13 @@
 import { css, keyframes } from "@emotion/css";
 import page from "./tools/classPages.js";
 import { consts } from "./tools/css.js";
-import _inputTxt from "./components/inputTxt.js";
-import _card from "./components/card.js";
-import _button from "./components/button.js";
-
 export default class extends page {
   render = () => {
     let document = this.window.document;
     this.document = document;
-    let card = new _card(this).render;
-    let inputTxt = new _inputTxt(this).render;
-    let button = new _button(this).render;
+    let card = new this.components.card(this).render;
+    let inputTxt = new this.components.inputTxt(this).render;
+    let button = new this.components.button(this).render;
     this.style.addG(
       css({
         body: {

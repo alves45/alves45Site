@@ -4,27 +4,28 @@ import zlib from "zlib";
 import { JSDOM } from "jsdom";
 import { css, cache } from "@emotion/css";
 import { consts, _style } from "./css.js";
+const pathComponents = "./Pages/components/";
+
 const whitePage = await fs
   .readFile("./Pages/whiteWindow.html", "utf8")
   .catch((err) => console.log("Not load whitePage " + err));
 
-const pathComponents = "./Pages/components/";
+let _components = { components: {} };
+const componentsFileName = await fs.readdir(pathComponents);
+for (const componentFileName of componentsFileName) {
+  _components.components[componentFileName.split(".")[0]] = (
+    await import(path.resolve(pathComponents, componentFileName))
+  ).default;
+}
 export default class {
   constructor() {
     /**@type {Window} */
     this.window = new JSDOM(whitePage).window;
     this.HTML = this.compress = "";
     this.style = new _style(cache);
-    // Object.assign(this, components);
+    Object.assign(this, _components);
   }
-  // components2 = await (async () => {
-  //   let _components = {};
-  //   (await fs.readdir(pathComponents)).forEach((nameComponent) => {
-  //     console.log(nameComponent)
-  //     _components[nameComponent.split(".")[0]] = (await import(path.resolve(pathComponents, nameComponent))).default
-  //     })
-  //   return _components;
-  // })();
+  components = _components;
   render() {
     let document = this.window.document;
     if (process.env.NODE_ENV !== "production") {
