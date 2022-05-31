@@ -1,7 +1,6 @@
 import http from "http";
 import fs from "fs";
 
-const AppUrl = "https://alves45.herokuapp.com/";
 const PORT = process.env.PORT || 3000;
 
 global.app = {
@@ -9,6 +8,7 @@ global.app = {
 };
 
 const pathPages = "./Pages/";
+
 (async () => {
   fs.readdirSync(pathPages)
     .filter((el) => el.indexOf(".js") >= 0)
@@ -49,14 +49,14 @@ function server() {
                   " " +
                   (req.headers["x-forwarded-for"] || req.socket.remoteAddress)
               );
-            res.setHeader("content-encoding", app.login.compress);
+            res.setHeader("content-encoding", app.login?.compress || "");
             res.setHeader("Content-Type", "text/html");
             //res.statusCode = 304;
-            res.end(app.login.HTML);
+            res.end(app.login?.HTML || "");
           }
         });
       } else {
-        res.writeHead(302, { Location: AppUrl });
+        res.writeHead(302, { Location: process.env.URL_SITE });
         res.end();
       }
     })
