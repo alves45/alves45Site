@@ -55,7 +55,7 @@ export default class {
                 signal = controller.signal;
                 toggle = true;
               });
-          }, 500);
+          }, 750);
         }).toString() +
         ")()";
     }

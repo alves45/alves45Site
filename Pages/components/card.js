@@ -10,7 +10,7 @@ export default class extends component {
   style = (() => {
     return css({
       backgroundColor: consts.colors.onBackground,
-      padding: consts.s5,
+      padding: consts.s7,
       marginLeft: consts.s1,
       marginRight: consts.s1,
       borderRadius: consts.s2,
