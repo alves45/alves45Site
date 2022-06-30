@@ -100,7 +100,6 @@ function server() {
         getInformationRequester(req, res);
         res.statusCode = 200;
         let cookie = new cookieParser(req, res);
-        console.log(cookie.names.userId);
         console.log(cookie.userId);
         let response = "";
         req.addListener("data", (chunk) => {
@@ -111,7 +110,6 @@ function server() {
             res.setHeader("Consent-Type", "application/json");
             res.end(response);
           } else {
-            res.setHeader("Set-Cookie", "batata=321;max-age=10");
             res.setHeader("content-encoding", app.login?.compress || "");
             res.setHeader("Content-Type", "text/html");
             //res.statusCode = 304;
